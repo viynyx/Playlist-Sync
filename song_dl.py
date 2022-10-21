@@ -14,10 +14,14 @@ class SongDownload:
 
     def get_playlist(self, PLAYLIST_ID):
         sp_songs= self.sp.playlist_tracks(playlist_id=PLAYLIST_ID, fields='items.track.name')
-
+        sp_tracks= self.sp.playlist_tracks(playlist_id=PLAYLIST_ID, fields='items.track.artists.name')
         for song in sp_songs['items']:
             print(song['track']['name'])
-        
+
+        for track in sp_tracks['items']:
+            sp_artists = track['track']['artists']
+            print(sp_artists[0]['name'])
+
     def get_folder(self):
         pass
 
